@@ -1,0 +1,2687 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DR Ceramic - Premium Car Detailing</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				font-family: "Inter", system-ui, sans-serif;
+				background: #fff;
+				color: #000;
+				line-height: 1.6;
+				overflow-x: hidden;
+			}
+
+			/* Scrollbar */
+			::-webkit-scrollbar {
+				width: 8px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: #f1f1f1;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: #c1c1c1;
+				border-radius: 4px;
+			}
+
+			/* Animations */
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translateY(30px);
+				}
+
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+
+				to {
+					opacity: 1;
+				}
+			}
+
+			@keyframes slideInRight {
+				from {
+					opacity: 0;
+					transform: translateX(100px) scale(0.95);
+				}
+
+				to {
+					opacity: 1;
+					transform: translateX(0) scale(1);
+				}
+			}
+
+			@keyframes float {
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+
+				50% {
+					transform: translateY(-10px);
+				}
+			}
+
+			@keyframes countUp {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.animate-on-scroll {
+				opacity: 0;
+				transform: translateY(30px);
+				transition:
+					opacity 0.6s ease,
+					transform 0.6s ease;
+			}
+
+			.animate-on-scroll.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			.stagger-1 {
+				transition-delay: 0.1s;
+			}
+
+			.stagger-2 {
+				transition-delay: 0.2s;
+			}
+
+			.stagger-3 {
+				transition-delay: 0.3s;
+			}
+
+			.stagger-4 {
+				transition-delay: 0.4s;
+			}
+
+			.stagger-5 {
+				transition-delay: 0.5s;
+			}
+
+			.stagger-6 {
+				transition-delay: 0.6s;
+			}
+
+			/* Navigation */
+			.navbar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 1000;
+				background: transparent;
+				transition:
+					background 0.3s ease,
+					box-shadow 0.3s ease;
+			}
+
+			.navbar.scrolled {
+				background: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(10px);
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+			}
+
+			.nav-container {
+				max-width: 1280px;
+				margin: 0 auto;
+				padding: 0 24px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				height: 72px;
+			}
+
+			.logo {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				text-decoration: none;
+			}
+
+			.logo-icon {
+				width: 40px;
+				height: 40px;
+				background: #000;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				font-weight: 700;
+				font-size: 18px;
+			}
+
+			.logo-img {
+				height: 40px;
+				width: auto;
+				border-radius: 4px;
+			}
+
+			.logo-text {
+				font-weight: 700;
+				font-size: 18px;
+				letter-spacing: -0.5px;
+				color: #000;
+			}
+
+			.nav-links {
+				display: flex;
+				gap: 32px;
+				list-style: none;
+			}
+
+			.nav-links a {
+				text-decoration: none;
+				color: #374151;
+				font-size: 14px;
+				font-weight: 500;
+				transition: color 0.2s;
+			}
+
+			.nav-links a:hover {
+				color: #000;
+			}
+
+			.nav-right {
+				display: flex;
+				align-items: center;
+				gap: 16px;
+			}
+
+			.icon-btn {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				border: none;
+				background: transparent;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: background 0.2s;
+			}
+
+			.icon-btn:hover {
+				background: #f3f4f6;
+			}
+
+			.btn {
+				padding: 12px 24px;
+				border-radius: 9999px;
+				font-size: 14px;
+				font-weight: 500;
+				cursor: pointer;
+				transition: all 0.2s;
+				border: none;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.btn-primary {
+				background: #000;
+				color: #fff;
+			}
+
+			.btn-primary:hover {
+				background: #374151;
+				transform: scale(1.02);
+			}
+
+			.btn-outline {
+				background: transparent;
+				color: #000;
+				border: 1px solid #d1d5db;
+			}
+
+			.btn-outline:hover {
+				background: #f9fafb;
+			}
+
+			.btn-lg {
+				padding: 16px 32px;
+				font-size: 16px;
+			}
+
+			.mobile-menu-btn {
+				display: none;
+			}
+
+			/* Hero Section */
+			.hero {
+				min-height: 100vh;
+				padding-top: 72px;
+				background: url("photos/back.jpeg");
+				background-size: cover;
+				background-position: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hero-container {
+				max-width: 1280px;
+				margin: 0 auto;
+				padding: 40px 0px;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 64px;
+				align-items: center;
+				min-height: calc(100vh - 72px);
+				position: relative;
+				z-index: 1;
+			}
+
+			.hero-label {
+				font-size: 14px;
+				font-weight: 500;
+				color: #6b7280;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				margin-bottom: 16px;
+				animation: fadeInUp 0.6s ease forwards;
+			}
+
+			.hero-title {
+				font-size: 56px;
+				font-weight: 700;
+				line-height: 1.1;
+				margin-bottom: 24px;
+				animation: fadeInUp 0.6s ease 0.1s forwards;
+				opacity: 0;
+			}
+
+			.hero-title span {
+				color: #6b7280;
+			}
+
+			.hero-desc {
+				font-size: 18px;
+				color: #000;
+				max-width: 500px;
+				margin-bottom: 32px;
+				animation: fadeInUp 0.6s ease 0.2s forwards;
+				opacity: 0;
+			}
+
+			.hero-buttons {
+				display: flex;
+				gap: 16px;
+				margin-bottom: 32px;
+				animation: fadeInUp 0.6s ease 0.3s forwards;
+				opacity: 0;
+			}
+
+			.search-box {
+				display: flex;
+				align-items: center;
+				background: #fff;
+				border-radius: 16px;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+				border: 1px solid #f3f4f6;
+				padding: 8px;
+				max-width: 440px;
+				animation: fadeInUp 0.6s ease 0.4s forwards;
+				opacity: 0;
+			}
+
+			.search-box svg {
+				margin-left: 16px;
+				color: #9ca3af;
+			}
+
+			.search-box input {
+				width: 100%;
+				flex: 1;
+				border: none;
+				padding: 12px 16px;
+				font-size: 16px;
+				outline: none;
+				background: transparent;
+			}
+
+			.search-box input::placeholder {
+				color: #9ca3af;
+			}
+
+			.hero-image-wrapper {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				animation: slideInRight 0.8s ease 0.3s forwards;
+				opacity: 0;
+			}
+
+			.hero-circles {
+				position: absolute;
+				inset: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.hero-circle {
+				position: absolute;
+				border: 1px solid #e5e7eb;
+				border-radius: 50%;
+			}
+
+			.hero-circle-1 {
+				width: 500px;
+				height: 500px;
+			}
+
+			.hero-circle-2 {
+				width: 400px;
+				height: 400px;
+			}
+
+			.hero-image {
+				position: relative;
+				z-index: 1;
+				animation: float 4s ease-in-out infinite;
+			}
+
+			.hero-image img {
+				width: 100%;
+				max-width: 600px;
+				border-radius: 16px;
+				box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+			}
+
+			/* Section Styles */
+			.section {
+				padding: 80px 24px;
+			}
+
+			.section-gray {
+				background: #f9fafb;
+			}
+
+			.section-container {
+				max-width: 1280px;
+				margin: 0 auto;
+			}
+
+			.section-header {
+				text-align: center;
+				margin-bottom: 64px;
+			}
+
+			.section-label {
+				font-size: 14px;
+				font-weight: 500;
+				color: #6b7280;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				margin-bottom: 16px;
+			}
+
+			.section-title {
+				font-size: 40px;
+				font-weight: 700;
+				margin-bottom: 16px;
+			}
+
+			.section-subtitle {
+				font-size: 16px;
+				color: #6b7280;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+
+			/* How It Works */
+			.steps-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 48px;
+			}
+
+			.step {
+				text-align: center;
+				position: relative;
+			}
+
+			.step:not(:last-child)::after {
+				content: "";
+				position: absolute;
+				top: 48px;
+				left: 60%;
+				width: 80%;
+				height: 2px;
+				background: #f3f4f6;
+			}
+
+			.step-icon {
+				width: 96px;
+				height: 96px;
+				background: #f3f4f6;
+				border-radius: 16px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto 24px;
+				transition: background 0.3s;
+			}
+
+			.step:hover .step-icon {
+				background: #e5e7eb;
+			}
+
+			.step-icon svg {
+				width: 40px;
+				height: 40px;
+				color: #374151;
+			}
+
+			.step-number {
+				width: 32px;
+				height: 32px;
+				background: #000;
+				color: #fff;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 14px;
+				font-weight: 700;
+				margin: 0 auto 16px;
+			}
+
+			.step-title {
+				font-size: 20px;
+				font-weight: 600;
+				margin-bottom: 12px;
+			}
+
+			.step-desc {
+				color: #6b7280;
+				max-width: 320px;
+				z-index: 4;
+				margin: 0 auto;
+			}
+
+			/* Services */
+			.services-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 24px;
+			}
+
+			.service-card {
+				background: #fff;
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+				transition:
+					box-shadow 0.3s,
+					transform 0.3s;
+				cursor: pointer;
+			}
+
+			.service-card:hover {
+				box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+				transform: translateY(-4px);
+			}
+
+			.service-image {
+				position: relative;
+				height: 224px;
+				overflow: hidden;
+			}
+
+			.service-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.5s;
+			}
+
+			.service-card:hover .service-image img {
+				transform: scale(1.05);
+			}
+
+			.service-overlay {
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+				opacity: 0;
+				transition: opacity 0.3s;
+				display: flex;
+				align-items: flex-end;
+				justify-content: space-between;
+				padding: 16px;
+			}
+
+			.service-card:hover .service-overlay {
+				opacity: 1;
+			}
+
+			.service-price {
+				color: #fff;
+				font-weight: 600;
+			}
+
+			.service-link {
+				color: #fff;
+				font-size: 14px;
+				font-weight: 500;
+				display: flex;
+				align-items: center;
+				gap: 4px;
+			}
+
+			.service-content {
+				padding: 24px;
+			}
+
+			.service-title {
+				font-size: 20px;
+				font-weight: 600;
+				margin-bottom: 8px;
+				transition: color 0.2s;
+			}
+
+			.service-card:hover .service-title {
+				color: #374151;
+			}
+
+			.service-desc {
+				font-size: 14px;
+				color: #6b7280;
+				line-height: 1.6;
+			}
+
+			.view-all {
+				text-align: center;
+				margin-top: 48px;
+			}
+
+			.view-all a {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				color: #000;
+				font-weight: 500;
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			.view-all a:hover {
+				color: #6b7280;
+			}
+
+			/* About Section */
+			.about-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 80px;
+				align-items: center;
+			}
+
+			.about-image {
+				position: relative;
+			}
+
+			.about-image img {
+				width: 100%;
+				border-radius: 16px;
+				box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+			}
+
+			.about-badge {
+				position: absolute;
+				bottom: -24px;
+				right: -24px;
+				background: #000;
+				color: #fff;
+				padding: 24px;
+				border-radius: 16px;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+			}
+
+			.about-badge-number {
+				font-size: 40px;
+				font-weight: 700;
+			}
+
+			.about-badge-text {
+				font-size: 14px;
+				color: #d1d5db;
+			}
+
+			.about-content {
+				padding-left: 40px;
+			}
+
+			.about-text {
+				color: #6b7280;
+				margin-bottom: 16px;
+				line-height: 1.7;
+			}
+
+			.about-features {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 12px;
+				margin: 32px 0;
+			}
+
+			.about-feature {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				font-size: 14px;
+				color: #374151;
+			}
+
+			.about-feature-icon {
+				width: 24px;
+				height: 24px;
+				background: #000;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+			}
+
+			.about-feature-icon svg {
+				width: 12px;
+				height: 12px;
+				color: #fff;
+			}
+
+			/* Stats */
+			.stats-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 16px;
+				margin-top: 64px;
+			}
+
+			.stat-card {
+				background: #f3f4f6;
+				border-radius: 16px;
+				padding: 24px;
+				text-align: center;
+			}
+
+			.stat-icon {
+				width: 32px;
+				height: 32px;
+				margin: 0 auto 12px;
+				color: #374151;
+			}
+
+			.stat-number {
+				font-size: 32px;
+				font-weight: 700;
+				margin-bottom: 4px;
+			}
+
+			.stat-label {
+				font-size: 14px;
+				color: #6b7280;
+			}
+
+			/* Gallery */
+			.gallery-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-auto-rows: 250px;
+				gap: 24px;
+			}
+
+			.gallery-item {
+				position: relative;
+				border-radius: 16px;
+				overflow: hidden;
+				cursor: pointer;
+			}
+
+			.gallery-item img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.5s;
+			}
+
+			.gallery-item:hover img {
+				transform: scale(1.1);
+			}
+
+			.gallery-overlay {
+				position: absolute;
+				inset: 0;
+				background: rgba(0, 0, 0, 0);
+				transition: background 0.3s;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.gallery-item:hover .gallery-overlay {
+				background: rgba(0, 0, 0, 0.4);
+			}
+
+			.gallery-zoom {
+				width: 48px;
+				height: 48px;
+				background: #fff;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+
+			.gallery-item:hover .gallery-zoom {
+				opacity: 1;
+			}
+
+			/* Lightbox */
+			.lightbox {
+				position: fixed;
+				inset: 0;
+				background: rgba(0, 0, 0, 0.95);
+				z-index: 2000;
+				display: none;
+				align-items: center;
+				justify-content: center;
+				padding: 24px;
+			}
+
+			.lightbox.active {
+				display: flex;
+			}
+
+			.lightbox img {
+				max-width: 90%;
+				max-height: 85vh;
+				object-fit: contain;
+			}
+
+			.lightbox-close {
+				position: absolute;
+				top: 24px;
+				right: 24px;
+				width: 40px;
+				height: 40px;
+				background: rgba(255, 255, 255, 0.1);
+				border: none;
+				border-radius: 50%;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: background 0.2s;
+			}
+
+			.lightbox-close:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+
+			.lightbox-close svg {
+				color: #fff;
+			}
+
+			/* Reviews */
+			.reviews-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 24px;
+			}
+
+			.review-card {
+				background: #f9fafb;
+				border-radius: 16px;
+				padding: 24px;
+				transition: box-shadow 0.3s;
+			}
+
+			.review-card:hover {
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+			}
+
+			.review-quote {
+				width: 32px;
+				height: 32px;
+				color: #d1d5db;
+				margin-bottom: 16px;
+			}
+
+			.review-stars {
+				display: flex;
+				gap: 4px;
+				margin-bottom: 16px;
+			}
+
+			.review-stars svg {
+				width: 16px;
+				height: 16px;
+				color: #fbbf24;
+				fill: #fbbf24;
+			}
+
+			.review-text {
+				color: #374151;
+				margin-bottom: 24px;
+				line-height: 1.7;
+			}
+
+			.review-author {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+			}
+
+			.review-avatar {
+				width: 40px;
+				height: 40px;
+				background: #000;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				font-weight: 600;
+				font-size: 14px;
+			}
+
+			.review-name {
+				font-weight: 600;
+			}
+
+			.review-car {
+				font-size: 14px;
+				color: #6b7280;
+			}
+
+			.trust-badges {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 32px;
+				margin-top: 64px;
+			}
+
+			.trust-badge {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.trust-badge-stars {
+				display: flex;
+				gap: 2px;
+			}
+
+			.trust-badge-stars svg {
+				width: 20px;
+				height: 20px;
+				color: #fbbf24;
+				fill: #fbbf24;
+			}
+
+			.trust-badge-rating {
+				font-weight: 600;
+			}
+
+			.trust-badge-source {
+				color: #6b7280;
+			}
+
+			.trust-divider {
+				width: 1px;
+				height: 32px;
+				background: #e5e7eb;
+			}
+
+			/* Contact */
+			.contact-grid {
+				display: grid;
+				grid-template-columns: 1fr 2fr;
+				gap: 32px;
+			}
+
+			.contact-cards {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+
+			.contact-card {
+				background: #4b5563;
+				color: #fff;
+				border-radius: 16px;
+				padding: 24px;
+				transition: background 0.2s;
+			}
+
+			.contact-card:hover {
+				background: #374151;
+			}
+
+			.contact-card-header {
+				display: flex;
+				align-items: flex-start;
+				gap: 16px;
+			}
+
+			.contact-card-icon {
+				width: 40px;
+				height: 40px;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+			}
+
+			.contact-card-icon svg {
+				width: 20px;
+				height: 20px;
+			}
+
+			.contact-card-title {
+				font-weight: 600;
+				margin-bottom: 4px;
+			}
+
+			.contact-card-content {
+				font-size: 14px;
+				color: #d1d5db;
+				white-space: pre-line;
+				margin-bottom: 12px;
+			}
+
+			.contact-card-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 4px;
+				font-size: 14px;
+				font-weight: 500;
+				color: #fff;
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			.contact-card-link:hover {
+				color: #d1d5db;
+			}
+
+			.contact-map {
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+				height: 100%;
+				min-height: 400px;
+			}
+
+			.contact-map iframe {
+				width: 100%;
+				height: 100%;
+				border: none;
+			}
+
+			.contact-cta {
+				text-align: center;
+				margin-top: 48px;
+			}
+
+			/* Footer */
+			.footer {
+				background: #000;
+				color: #fff;
+				padding: 64px 24px 24px;
+			}
+
+			.footer-container {
+				max-width: 1280px;
+				margin: 0 auto;
+			}
+
+			.footer-grid {
+				display: grid;
+				grid-template-columns: 2fr 1fr 1fr 1fr;
+				gap: 48px;
+				margin-bottom: 48px;
+			}
+
+			.footer-brand {
+				max-width: 320px;
+			}
+
+			.footer-logo {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin-bottom: 16px;
+			}
+
+			.footer-logo-icon {
+				width: 40px;
+				height: 40px;
+				background: #fff;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #000;
+				font-weight: 700;
+				font-size: 18px;
+			}
+
+			.footer-logo-img {
+				height: 60px;
+				width: auto;
+				border-radius: 4px;
+			}
+
+			.footer-logo-text {
+				font-weight: 700;
+				font-size: 18px;
+			}
+
+			.footer-desc {
+				color: #9ca3af;
+				font-size: 14px;
+				line-height: 1.7;
+				margin-bottom: 24px;
+			}
+
+			.footer-newsletter {
+				margin-bottom: 24px;
+			}
+
+			.footer-newsletter-title {
+				font-weight: 600;
+				margin-bottom: 12px;
+			}
+
+			.footer-newsletter-form {
+				display: flex;
+				gap: 8px;
+			}
+
+			.footer-newsletter-form input {
+				flex: 1;
+				background: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 9999px;
+				padding: 12px 16px;
+				color: #fff;
+				font-size: 14px;
+				outline: none;
+			}
+
+			.footer-newsletter-form input::placeholder {
+				color: #6b7280;
+			}
+
+			.footer-newsletter-form button {
+				width: 40px;
+				height: 40px;
+				background: #fff;
+				border: none;
+				border-radius: 50%;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: background 0.2s;
+			}
+
+			.footer-newsletter-form button:hover {
+				background: #e5e7eb;
+			}
+
+			.footer-social {
+				display: flex;
+				gap: 12px;
+			}
+
+			.footer-social a {
+				width: 40px;
+				height: 40px;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: background 0.2s;
+			}
+
+			.footer-social a:hover {
+				background: rgba(255, 255, 255, 0.2);
+			}
+
+			.footer-social svg {
+				width: 20px;
+				height: 20px;
+			}
+
+			.footer-column h4 {
+				font-weight: 600;
+				margin-bottom: 16px;
+			}
+
+			.footer-column ul {
+				list-style: none;
+			}
+
+			.footer-column li {
+				margin-bottom: 12px;
+			}
+
+			.footer-column a {
+				color: #9ca3af;
+				text-decoration: none;
+				font-size: 14px;
+				transition: color 0.2s;
+			}
+
+			.footer-column a:hover {
+				color: #fff;
+			}
+
+			.footer-bottom {
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				padding-top: 24px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.footer-copyright {
+				color: #9ca3af;
+				font-size: 14px;
+			}
+
+			.footer-links {
+				display: flex;
+				gap: 24px;
+			}
+
+			.footer-links a {
+				color: #9ca3af;
+				text-decoration: none;
+				font-size: 14px;
+				transition: color 0.2s;
+			}
+
+			.footer-links a:hover {
+				color: #fff;
+			}
+
+			/* Mobile Menu */
+			.mobile-menu {
+				position: fixed;
+				top: 0;
+				right: -100%;
+				width: 300px;
+				height: 100vh;
+				background: #fff;
+				z-index: 1500;
+				padding: 80px 24px 24px;
+				transition: right 0.3s ease;
+				box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+			}
+
+			.mobile-menu.active {
+				right: 0;
+			}
+
+			.mobile-menu-close {
+				position: absolute;
+				top: 24px;
+				right: 24px;
+				width: 40px;
+				height: 40px;
+				border: none;
+				background: transparent;
+				cursor: pointer;
+			}
+
+			.mobile-menu-links {
+				list-style: none;
+			}
+
+			.mobile-menu-links li {
+				margin-bottom: 16px;
+			}
+
+			.mobile-menu-links a {
+				font-size: 18px;
+				font-weight: 500;
+				color: #000;
+				text-decoration: none;
+			}
+
+			.mobile-menu-overlay {
+				position: fixed;
+				inset: 0;
+				background: rgba(0, 0, 0, 0.5);
+				z-index: 1400;
+				display: none;
+			}
+
+			.mobile-menu-overlay.active {
+				display: block;
+			}
+
+			/* Responsive */
+			@media (max-width: 1024px) {
+				.hero-container {
+					grid-template-columns: 1fr;
+					text-align: center;
+				}
+
+				.hero-title {
+					font-size: 40px;
+				}
+
+				.hero-desc {
+					margin-left: auto;
+					margin-right: auto;
+				}
+
+				.hero-buttons {
+					justify-content: center;
+				}
+
+				.search-box {
+					margin: 0 auto;
+				}
+
+				.hero-image-wrapper {
+					order: -1;
+				}
+
+				.hero-circle-1 {
+					width: 350px;
+					height: 350px;
+				}
+
+				.hero-circle-2 {
+					width: 280px;
+					height: 280px;
+				}
+
+				.about-grid {
+					grid-template-columns: 1fr;
+					gap: 48px;
+				}
+
+				.about-content {
+					padding-left: 0;
+				}
+
+				.contact-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.footer-grid {
+					grid-template-columns: 1fr 1fr;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.nav-links {
+					display: none;
+				}
+
+				.mobile-menu-btn {
+					display: block;
+				}
+
+				.search-box {
+					width: 85%;
+				}
+
+				.steps-grid,
+				.services-grid,
+				.reviews-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.step:not(:last-child)::after {
+					display: none;
+				}
+
+				.stats-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+
+				.gallery-grid {
+					grid-template-columns: repeat(2, 1fr);
+					grid-auto-rows: 150px;
+				}
+
+				.gallery-item:nth-child(2),
+				.gallery-item:nth-child(6) {
+					grid-row: span 1;
+				}
+
+				.gallery-item:nth-child(4) {
+					grid-column: span 2;
+				}
+
+				.about-features {
+					grid-template-columns: 1fr;
+				}
+
+				.trust-badges {
+					flex-direction: column;
+					gap: 16px;
+				}
+
+				.trust-divider {
+					display: none;
+				}
+
+				.footer-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.footer-bottom {
+					flex-direction: column;
+					gap: 16px;
+					text-align: center;
+				}
+
+				.section-title {
+					font-size: 32px;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.hero-title {
+					font-size: 32px;
+				}
+
+				.hero-buttons {
+					flex-direction: column;
+					align-items: center;
+				}
+
+				.btn-lg {
+					width: 85%;
+					justify-content: center;
+				}
+
+				.stats-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.about-badge {
+					position: relative;
+					bottom: auto;
+					right: auto;
+					margin-top: 16px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar" id="navbar">
+			<div class="nav-container">
+				<a href="#" class="logo">
+					<img src="photos/dr logo.jpg" alt="DR Ceramic Logo" class="logo-img" />
+					<span class="logo-text">DR CERAMIC</span>
+				</a>
+				<ul class="nav-links">
+					<li><a href="#services">Services</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#gallery">Gallery</a></li>
+					<li><a href="#reviews">Reviews</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+				<div class="nav-right">
+					<button class="icon-btn">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="11" cy="11" r="8" />
+							<path d="m21 21-4.35-4.35" />
+						</svg>
+					</button>
+					<a href="#contact" class="btn btn-primary">Book Now</a>
+					<button class="icon-btn mobile-menu-btn" onclick="toggleMobileMenu()">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<line x1="3" y1="12" x2="21" y2="12" />
+							<line x1="3" y1="6" x2="21" y2="6" />
+							<line x1="3" y1="18" x2="21" y2="18" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Mobile Menu -->
+		<div class="mobile-menu-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+		<div class="mobile-menu" id="mobileMenu">
+			<button class="mobile-menu-close" onclick="toggleMobileMenu()">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<line x1="18" y1="6" x2="6" y2="18" />
+					<line x1="6" y1="6" x2="18" y2="18" />
+				</svg>
+			</button>
+			<ul class="mobile-menu-links">
+				<li><a href="#services" onclick="toggleMobileMenu()">Services</a></li>
+				<li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+				<li><a href="#gallery" onclick="toggleMobileMenu()">Gallery</a></li>
+				<li><a href="#reviews" onclick="toggleMobileMenu()">Reviews</a></li>
+				<li><a href="#contact" onclick="toggleMobileMenu()">Contact</a></li>
+			</ul>
+		</div>
+
+		<!-- Hero Section -->
+		<section class="hero">
+			<div class="hero-container">
+				<div class="hero-content">
+					<p class="hero-label">Premium Car Detailing</p>
+					<h1 class="hero-title">Transform Your Vehicle to <span>Showroom Perfection</span></h1>
+					<p class="hero-desc">
+						Expert detailing services that protect, restore, and enhance your car's appearance<br />
+						using premium <br />
+						products and techniques.
+					</p>
+					<div class="hero-buttons">
+						<a href="#contact" class="btn btn-primary btn-lg">
+							Get a Quote
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</a>
+						<a href="#services" class="btn btn-outline btn-lg">View Services</a>
+					</div>
+					<div class="search-box">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="11" cy="11" r="8" />
+							<path d="m21 21-4.35-4.35" />
+						</svg>
+						<input type="text" placeholder="Enter your location..." />
+						<a href="#contact" class="btn btn-primary">Book</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- How It Works -->
+		<section class="section">
+			<div class="section-container">
+				<div class="section-header animate-on-scroll">
+					<p class="section-label">How It Works</p>
+					<h2 class="section-title">Simple 3-Step Process</h2>
+				</div>
+				<div class="steps-grid">
+					<div class="step animate-on-scroll stagger-1">
+						<div class="step-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+								<line x1="16" y1="2" x2="16" y2="6" />
+								<line x1="8" y1="2" x2="8" y2="6" />
+								<line x1="3" y1="10" x2="21" y2="10" />
+							</svg>
+						</div>
+						<div class="step-number">1</div>
+						<h3 class="step-title">Book Online</h3>
+						<p class="step-desc">
+							Schedule your detailing appointment through our easy booking system. Choose your preferred service and
+							time slot.
+						</p>
+					</div>
+					<div class="step animate-on-scroll stagger-2">
+						<div class="step-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+								<circle cx="12" cy="10" r="3" />
+							</svg>
+						</div>
+						<div class="step-number">2</div>
+						<h3 class="step-title">We Come to You</h3>
+						<p class="step-desc">
+							Our mobile team arrives at your location with all the professional equipment and premium products
+							needed.
+						</p>
+					</div>
+					<div class="step animate-on-scroll stagger-3">
+						<div class="step-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path
+									d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+								/>
+							</svg>
+						</div>
+						<div class="step-number">3</div>
+						<h3 class="step-title">Enjoy the Results</h3>
+						<p class="step-desc">
+							Drive away in a showroom-fresh vehicle with protected paint and a pristine interior that turns heads.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services -->
+		<section class="section section-gray" id="services">
+			<div class="section-container">
+				<div class="section-header animate-on-scroll">
+					<p class="section-label">Our Services</p>
+					<h2 class="section-title">Premium Detailing Packages</h2>
+					<p class="section-subtitle">
+						From basic maintenance to full restoration, we offer a range of services to keep your vehicle looking its
+						best.
+					</p>
+				</div>
+				<div class="services-grid">
+					<div class="service-card animate-on-scroll stagger-1">
+						<div class="service-image">
+							<img
+								src="https://images.unsplash.com/photo-1552930294-6b595f4c2974?w=600&q=80"
+								alt="Exterior Detailing"
+							/>
+							<div class="service-overlay">
+								<span class="service-price">From $149</span>
+								<span class="service-link">Book Now →</span>
+							</div>
+						</div>
+						<div class="service-content">
+							<h3 class="service-title">Exterior Detailing</h3>
+							<p class="service-desc">
+								Complete wash, clay bar treatment, paint correction, and ceramic coating protection for a
+								mirror-like finish.
+							</p>
+						</div>
+					</div>
+					<div class="service-card animate-on-scroll stagger-2">
+						<div class="service-image">
+							<img
+								src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=600&q=80"
+								alt="Interior Detailing"
+							/>
+							<div class="service-overlay">
+								<span class="service-price">From $129</span>
+								<span class="service-link">Book Now →</span>
+							</div>
+						</div>
+						<div class="service-content">
+							<h3 class="service-title">Interior Detailing</h3>
+							<p class="service-desc">
+								Deep cleaning of all surfaces, leather conditioning, odor elimination, and stain removal for a
+								fresh cabin.
+							</p>
+						</div>
+					</div>
+					<div class="service-card animate-on-scroll stagger-3">
+						<div class="service-image">
+							<img src="./photos/engine.jpg" alt="Paint Correction" />
+							<div class="service-overlay">
+								<span class="service-price">From $299</span>
+								<span class="service-link">Book Now →</span>
+							</div>
+						</div>
+						<div class="service-content">
+							<h3 class="service-title">Paint Correction</h3>
+							<p class="service-desc">
+								Remove swirl marks, scratches, and oxidation to restore your paint to a flawless, mirror-like
+								finish.
+							</p>
+						</div>
+					</div>
+					<div class="service-card animate-on-scroll stagger-4">
+						<div class="service-image">
+							<img src="./photos/paint.jpg" alt="Ceramic Coating" />
+							<div class="service-overlay">
+								<span class="service-price">From $499</span>
+								<span class="service-link">Book Now →</span>
+							</div>
+						</div>
+						<div class="service-content">
+							<h3 class="service-title">Ceramic Coating</h3>
+							<p class="service-desc">
+								Long-lasting protection with hydrophobic properties that repel water, dirt, and contaminants for
+								years.
+							</p>
+						</div>
+					</div>
+					<div class="service-card animate-on-scroll stagger-5">
+						<div class="service-image">
+							<img
+								src="https://images.unsplash.com/photo-1617531653520-4893f7bbf978?w=600&q=80"
+								alt="Paint Protection Film"
+							/>
+							<div class="service-overlay">
+								<span class="service-price">From $799</span>
+								<span class="service-link">Book Now →</span>
+							</div>
+						</div>
+						<div class="service-content">
+							<h3 class="service-title">Paint Protection Film</h3>
+							<p class="service-desc">
+								Invisible shield against rock chips, scratches, and environmental damage with self-healing
+								properties.
+							</p>
+						</div>
+					</div>
+					<div class="service-card animate-on-scroll stagger-6">
+						<div class="service-image">
+							<img
+								src="https://images.unsplash.com/photo-1625047509168-a7026f36de04?w=600&q=80"
+								alt="Mobile Detailing"
+							/>
+							<div class="service-overlay">
+								<span class="service-price">From $199</span>
+								<span class="service-link">Book Now →</span>
+							</div>
+						</div>
+						<div class="service-content">
+							<h3 class="service-title">Mobile Detailing</h3>
+							<p class="service-desc">
+								Full detailing service at your home or office. We bring everything needed for a premium
+								experience.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="view-all animate-on-scroll">
+					<a href="#services">
+						View All Services
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M5 12h14M12 5l7 7-7 7" />
+						</svg>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section class="section" id="about">
+			<div class="section-container">
+				<div class="about-grid">
+					<div class="about-image animate-on-scroll">
+						<img
+							src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=800&q=80"
+							alt="Professional detailer at work"
+						/>
+						<div class="about-badge">
+							<div class="about-badge-number">10+</div>
+							<div class="about-badge-text">Years of Excellence</div>
+						</div>
+					</div>
+					<div class="about-content">
+						<p class="section-label animate-on-scroll">About Us</p>
+						<h2 class="section-title animate-on-scroll stagger-1">Passionate About Perfection</h2>
+						<p class="about-text animate-on-scroll stagger-2">
+							With over 10 years of experience in the automotive detailing industry, DR Ceramic has established
+							itself as the premier choice for discerning car owners who demand nothing but the best.
+						</p>
+						<p class="about-text animate-on-scroll stagger-3">
+							Our certified technicians use only premium products and cutting-edge techniques to deliver results
+							that exceed expectations. We treat every vehicle as if it were our own, ensuring meticulous attention
+							to every detail.
+						</p>
+						<div class="about-features animate-on-scroll stagger-4">
+							<div class="about-feature">
+								<div class="about-feature-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+										<polyline points="20 6 9 17 4 12" />
+									</svg>
+								</div>
+								<span>Certified professional technicians</span>
+							</div>
+							<div class="about-feature">
+								<div class="about-feature-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+										<polyline points="20 6 9 17 4 12" />
+									</svg>
+								</div>
+								<span>Premium products and equipment</span>
+							</div>
+							<div class="about-feature">
+								<div class="about-feature-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+										<polyline points="20 6 9 17 4 12" />
+									</svg>
+								</div>
+								<span>Eco-friendly cleaning solutions</span>
+							</div>
+							<div class="about-feature">
+								<div class="about-feature-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+										<polyline points="20 6 9 17 4 12" />
+									</svg>
+								</div>
+								<span>Fully insured and bonded</span>
+							</div>
+							<div class="about-feature">
+								<div class="about-feature-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+										<polyline points="20 6 9 17 4 12" />
+									</svg>
+								</div>
+								<span>Mobile service available</span>
+							</div>
+							<div class="about-feature">
+								<div class="about-feature-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+										<polyline points="20 6 9 17 4 12" />
+									</svg>
+								</div>
+								<span>Satisfaction guaranteed</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="stats-grid">
+					<div class="stat-card animate-on-scroll">
+						<svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="8" r="7" />
+							<polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+						</svg>
+						<div class="stat-number" data-target="10">0</div>
+						<div class="stat-label">Years Experience</div>
+					</div>
+					<div class="stat-card animate-on-scroll stagger-1">
+						<svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+							<circle cx="9" cy="7" r="4" />
+							<path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+							<path d="M16 3.13a4 4 0 0 1 0 7.75" />
+						</svg>
+						<div class="stat-number" data-target="5000">0</div>
+						<div class="stat-label">Happy Customers</div>
+					</div>
+					<div class="stat-card animate-on-scroll stagger-2">
+						<svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<polygon
+								points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+							/>
+						</svg>
+						<div class="stat-number" data-target="50">0</div>
+						<div class="stat-label">5-Star Reviews</div>
+					</div>
+					<div class="stat-card animate-on-scroll stagger-3">
+						<svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+						</svg>
+						<div class="stat-number" data-target="100">0</div>
+						<div class="stat-label">Satisfaction %</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Gallery -->
+		<section class="section section-gray" id="gallery">
+			<div class="section-container">
+				<div class="section-header animate-on-scroll">
+					<p class="section-label">Our Work</p>
+					<h2 class="section-title">Transformation Gallery</h2>
+					<p class="section-subtitle">
+						See the difference professional detailing makes. Browse our portfolio of completed projects.
+					</p>
+				</div>
+				<div class="gallery-grid">
+					<div class="gallery-item animate-on-scroll" onclick="openLightbox(this)">
+						<img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" alt="Polished paint" />
+						<div class="gallery-overlay">
+							<div class="gallery-zoom">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<circle cx="11" cy="11" r="8" />
+									<line x1="21" y1="21" x2="16.65" y2="16.65" />
+									<line x1="11" y1="8" x2="11" y2="14" />
+									<line x1="8" y1="11" x2="14" y2="11" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="gallery-item animate-on-scroll stagger-1" onclick="openLightbox(this)">
+						<img
+							src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?w=600&q=80"
+							alt="Interior leather"
+						/>
+						<div class="gallery-overlay">
+							<div class="gallery-zoom">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<circle cx="11" cy="11" r="8" />
+									<line x1="21" y1="21" x2="16.65" y2="16.65" />
+									<line x1="11" y1="8" x2="11" y2="14" />
+									<line x1="8" y1="11" x2="14" y2="11" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="gallery-item animate-on-scroll stagger-2" onclick="openLightbox(this)">
+						<img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80" alt="Wheel detail" />
+						<div class="gallery-overlay">
+							<div class="gallery-zoom">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<circle cx="11" cy="11" r="8" />
+									<line x1="21" y1="21" x2="16.65" y2="16.65" />
+									<line x1="11" y1="8" x2="11" y2="14" />
+									<line x1="8" y1="11" x2="14" y2="11" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="gallery-item animate-on-scroll stagger-3" onclick="openLightbox(this)">
+						<img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80" alt="Sports car" />
+						<div class="gallery-overlay">
+							<div class="gallery-zoom">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<circle cx="11" cy="11" r="8" />
+									<line x1="21" y1="21" x2="16.65" y2="16.65" />
+									<line x1="11" y1="8" x2="11" y2="14" />
+									<line x1="8" y1="11" x2="14" y2="11" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="gallery-item animate-on-scroll stagger-4" onclick="openLightbox(this)">
+						<img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&q=80" alt="Dashboard" />
+						<div class="gallery-overlay">
+							<div class="gallery-zoom">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<circle cx="11" cy="11" r="8" />
+									<line x1="21" y1="21" x2="16.65" y2="16.65" />
+									<line x1="11" y1="8" x2="11" y2="14" />
+									<line x1="8" y1="11" x2="14" y2="11" />
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="gallery-item animate-on-scroll stagger-5" onclick="openLightbox(this)">
+						<img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80" alt="Engine bay" />
+						<div class="gallery-overlay">
+							<div class="gallery-zoom">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<circle cx="11" cy="11" r="8" />
+									<line x1="21" y1="21" x2="16.65" y2="16.65" />
+									<line x1="11" y1="8" x2="11" y2="14" />
+									<line x1="8" y1="11" x2="14" y2="11" />
+								</svg>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Lightbox -->
+		<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+			<button class="lightbox-close" onclick="closeLightbox()">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<line x1="18" y1="6" x2="6" y2="18" />
+					<line x1="6" y1="6" x2="18" y2="18" />
+				</svg>
+			</button>
+			<img src="" alt="Gallery image" id="lightboxImg" />
+		</div>
+
+		<!-- Reviews -->
+		<section class="section" id="reviews">
+			<div class="section-container">
+				<div class="section-header animate-on-scroll">
+					<p class="section-label">Testimonials</p>
+					<h2 class="section-title">What Our Clients Say</h2>
+					<p class="section-subtitle">
+						Don't just take our word for it. Here's what our satisfied customers have to say about their experience.
+					</p>
+				</div>
+				<div class="reviews-grid">
+					<div class="review-card animate-on-scroll">
+						<svg class="review-quote" viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+							/>
+						</svg>
+						<div class="review-stars">
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+						</div>
+						<p class="review-text">
+							"Absolutely incredible results! My car looks better than when I bought it. The attention to detail is
+							unmatched. I've already booked my next appointment."
+						</p>
+						<div class="review-author">
+							<div class="review-avatar">M</div>
+							<div>
+								<div class="review-name">Michael R.</div>
+								<div class="review-car">BMW M5</div>
+							</div>
+						</div>
+					</div>
+					<div class="review-card animate-on-scroll stagger-1">
+						<svg class="review-quote" viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+							/>
+						</svg>
+						<div class="review-stars">
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+						</div>
+						<p class="review-text">
+							"Professional, punctual, and perfectionists. The ceramic coating has kept my car looking amazing for
+							months. Worth every penny!"
+						</p>
+						<div class="review-author">
+							<div class="review-avatar">S</div>
+							<div>
+								<div class="review-name">Sarah L.</div>
+								<div class="review-car">Mercedes GLC</div>
+							</div>
+						</div>
+					</div>
+					<div class="review-card animate-on-scroll stagger-2">
+						<svg class="review-quote" viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+							/>
+						</svg>
+						<div class="review-stars">
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+						</div>
+						<p class="review-text">
+							"Best detailing service I've ever used. They came to my office and transformed my car during my
+							workday. So convenient!"
+						</p>
+						<div class="review-author">
+							<div class="review-avatar">D</div>
+							<div>
+								<div class="review-name">David K.</div>
+								<div class="review-car">Audi A6</div>
+							</div>
+						</div>
+					</div>
+					<div class="review-card animate-on-scroll stagger-3">
+						<svg class="review-quote" viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+							/>
+						</svg>
+						<div class="review-stars">
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+						</div>
+						<p class="review-text">
+							"The paint correction removed swirl marks I thought were permanent. Truly skilled technicians who know
+							their craft."
+						</p>
+						<div class="review-author">
+							<div class="review-avatar">E</div>
+							<div>
+								<div class="review-name">Emily T.</div>
+								<div class="review-car">Porsche 911</div>
+							</div>
+						</div>
+					</div>
+					<div class="review-card animate-on-scroll stagger-4">
+						<svg class="review-quote" viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+							/>
+						</svg>
+						<div class="review-stars">
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+						</div>
+						<p class="review-text">
+							"Outstanding mobile service. Convenient and the results speak for themselves. Highly recommend to all
+							car enthusiasts!"
+						</p>
+						<div class="review-author">
+							<div class="review-avatar">J</div>
+							<div>
+								<div class="review-name">James W.</div>
+								<div class="review-car">Tesla Model S</div>
+							</div>
+						</div>
+					</div>
+					<div class="review-card animate-on-scroll stagger-5">
+						<svg class="review-quote" viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"
+							/>
+						</svg>
+						<div class="review-stars">
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+						</div>
+						<p class="review-text">
+							"My interior looks and smells brand new. They got out stains I thought were impossible to remove. Will
+							definitely be a repeat customer."
+						</p>
+						<div class="review-author">
+							<div class="review-avatar">A</div>
+							<div>
+								<div class="review-name">Amanda H.</div>
+								<div class="review-car">Range Rover</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="trust-badges animate-on-scroll">
+					<div class="trust-badge">
+						<div class="trust-badge-stars">
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+						</div>
+						<span class="trust-badge-rating">4.9/5</span>
+						<span class="trust-badge-source">Google Reviews</span>
+					</div>
+					<div class="trust-divider"></div>
+					<div class="trust-badge">
+						<div class="trust-badge-stars">
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+							<svg viewBox="0 0 24 24">
+								<polygon
+									points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+								/>
+							</svg>
+						</div>
+						<span class="trust-badge-rating">5.0/5</span>
+						<span class="trust-badge-source">Yelp Rating</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<section class="section section-gray" id="contact">
+			<div class="section-container">
+				<div class="section-header animate-on-scroll">
+					<p class="section-label">Contact Us</p>
+					<h2 class="section-title">Get in Touch</h2>
+					<p class="section-subtitle">
+						Ready to transform your vehicle? Visit our location or reach out to schedule your detailing service.
+					</p>
+				</div>
+				<div class="contact-grid">
+					<div class="contact-cards">
+						<div class="contact-card animate-on-scroll">
+							<div class="contact-card-header">
+								<div class="contact-card-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+										<circle cx="12" cy="10" r="3" />
+									</svg>
+								</div>
+								<div>
+									<h4 class="contact-card-title">Visit Us</h4>
+									<p class="contact-card-content">123 Detail Street Auto City, AC 12345</p>
+									<a
+										href="https://maps.google.com/?q=123+Detail+Street+Auto+City"
+										target="_blank"
+										class="contact-card-link"
+									>
+										Get Directions
+										<svg
+											width="12"
+											height="12"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+										>
+											<path d="M7 17 17 7M17 7H7M17 7v10" />
+										</svg>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="contact-card animate-on-scroll stagger-1">
+							<div class="contact-card-header">
+								<div class="contact-card-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<path
+											d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+										/>
+									</svg>
+								</div>
+								<div>
+									<h4 class="contact-card-title">Call Us</h4>
+									<p class="contact-card-content">+1 (555) 123-4567</p>
+									<a href="tel:+15551234567" class="contact-card-link">
+										Call Now
+										<svg
+											width="12"
+											height="12"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+										>
+											<path d="M7 17 17 7M17 7H7M17 7v10" />
+										</svg>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="contact-card animate-on-scroll stagger-2">
+							<div class="contact-card-header">
+								<div class="contact-card-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+										<polyline points="22,6 12,13 2,6" />
+									</svg>
+								</div>
+								<div>
+									<h4 class="contact-card-title">Email Us</h4>
+									<p class="contact-card-content">info@drceramic.com</p>
+									<a href="mailto:info@drceramic.com" class="contact-card-link">
+										Send Email
+										<svg
+											width="12"
+											height="12"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+										>
+											<path d="M7 17 17 7M17 7H7M17 7v10" />
+										</svg>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="contact-card animate-on-scroll stagger-3">
+							<div class="contact-card-header">
+								<div class="contact-card-icon">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<circle cx="12" cy="12" r="10" />
+										<polyline points="12 6 12 12 16 14" />
+									</svg>
+								</div>
+								<div>
+									<h4 class="contact-card-title">Business Hours</h4>
+									<p class="contact-card-content">Mon - Sat: 8AM - 6PM Sunday: Closed</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="contact-map animate-on-scroll">
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.74076684379132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sus!4v1584484523418!5m2!1sen!2sus"
+							allowfullscreen=""
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+						></iframe>
+					</div>
+				</div>
+				<div class="contact-cta animate-on-scroll">
+					<a href="#contact" class="btn btn-primary btn-lg">Book Your Appointment</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-container">
+				<div class="footer-grid">
+					<div class="footer-brand">
+						<div class="footer-logo">
+							<img src="photos/dr logo.jpg" alt="DR Ceramic Logo" class="footer-logo-img" />
+							<span class="footer-logo-text">DR CERAMIC</span>
+						</div>
+						<p class="footer-desc">
+							Premium car detailing services that protect, restore, and enhance your vehicle's appearance.
+							Experience the difference of professional care.
+						</p>
+						<div class="footer-newsletter">
+							<h4 class="footer-newsletter-title">Subscribe to our newsletter</h4>
+							<form
+								class="footer-newsletter-form"
+								onsubmit="
+									event.preventDefault();
+									alert('Thanks for subscribing!');
+								"
+							>
+								<input type="email" placeholder="Enter your email" required />
+								<button type="submit">
+									<svg
+										width="16"
+										height="16"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<line x1="22" y1="2" x2="11" y2="13" />
+										<polygon points="22 2 15 22 11 13 2 9 22 2" />
+									</svg>
+								</button>
+							</form>
+						</div>
+						<div class="footer-social">
+							<a href="#" aria-label="Facebook">
+								<svg viewBox="0 0 24 24" fill="currentColor">
+									<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+								</svg>
+							</a>
+							<a href="#" aria-label="Instagram">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+									<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+									<line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+								</svg>
+							</a>
+							<a href="#" aria-label="Twitter">
+								<svg viewBox="0 0 24 24" fill="currentColor">
+									<path
+										d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+									/>
+								</svg>
+							</a>
+							<a href="#" aria-label="YouTube">
+								<svg viewBox="0 0 24 24" fill="currentColor">
+									<path
+										d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+									/>
+									<polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="footer-column">
+						<h4>Services</h4>
+						<ul>
+							<li><a href="#services">Exterior Detailing</a></li>
+							<li><a href="#services">Interior Detailing</a></li>
+							<li><a href="#services">Paint Correction</a></li>
+							<li><a href="#services">Ceramic Coating</a></li>
+							<li><a href="#services">Paint Protection Film</a></li>
+							<li><a href="#services">Mobile Detailing</a></li>
+						</ul>
+					</div>
+					<div class="footer-column">
+						<h4>Company</h4>
+						<ul>
+							<li><a href="#about">About Us</a></li>
+							<li><a href="#gallery">Our Gallery</a></li>
+							<li><a href="#reviews">Reviews</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</div>
+					<div class="footer-column">
+						<h4>Support</h4>
+						<ul>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#services">Pricing</a></li>
+							<li><a href="#contact">Book Online</a></li>
+							<li><a href="#">Gift Cards</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<p class="footer-copyright">© 2025 DR Ceramic. All rights reserved.</p>
+					<div class="footer-links">
+						<a href="#">Privacy Policy</a>
+						<a href="#">Terms of Service</a>
+						<a href="#">Cookie Policy</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			// Navbar scroll effect
+			const navbar = document.getElementById("navbar");
+			window.addEventListener("scroll", () => {
+				if (window.scrollY > 50) {
+					navbar.classList.add("scrolled");
+				} else {
+					navbar.classList.remove("scrolled");
+				}
+			});
+
+			// Mobile menu toggle
+			function toggleMobileMenu() {
+				const menu = document.getElementById("mobileMenu");
+				const overlay = document.getElementById("mobileOverlay");
+				menu.classList.toggle("active");
+				overlay.classList.toggle("active");
+			}
+
+			// Scroll animations
+			const observerOptions = {
+				root: null,
+				rootMargin: "0px",
+				threshold: 0.1,
+			};
+
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("visible");
+					}
+				});
+			}, observerOptions);
+
+			document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+				observer.observe(el);
+			});
+
+			// Stats counter animation
+			const statObserver = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							const statNumbers = entry.target.querySelectorAll(".stat-number");
+							statNumbers.forEach((stat) => {
+								const target = parseInt(stat.dataset.target);
+								animateCounter(stat, target);
+							});
+							statObserver.unobserve(entry.target);
+						}
+					});
+				},
+				{threshold: 0.5},
+			);
+
+			const statsGrid = document.querySelector(".stats-grid");
+			if (statsGrid) {
+				statObserver.observe(statsGrid);
+			}
+
+			function animateCounter(element, target) {
+				let current = 0;
+				const increment = target / 50;
+				const timer = setInterval(() => {
+					current += increment;
+					if (current >= target) {
+						element.textContent = target + (target === 100 ? "%" : "+");
+						clearInterval(timer);
+					} else {
+						element.textContent = Math.floor(current) + (target === 100 ? "%" : "+");
+					}
+				}, 30);
+			}
+
+			// Lightbox
+			function openLightbox(element) {
+				const img = element.querySelector("img");
+				const lightbox = document.getElementById("lightbox");
+				const lightboxImg = document.getElementById("lightboxImg");
+				lightboxImg.src = img.src;
+				lightbox.classList.add("active");
+				document.body.style.overflow = "hidden";
+			}
+
+			function closeLightbox() {
+				const lightbox = document.getElementById("lightbox");
+				lightbox.classList.remove("active");
+				document.body.style.overflow = "";
+			}
+
+			// Close lightbox on escape key
+			document.addEventListener("keydown", (e) => {
+				if (e.key === "Escape") {
+					closeLightbox();
+				}
+			});
+		</script>
+	</body>
+</html>
